@@ -2,7 +2,7 @@
     <div id="upper">
         <div id="left">
             <div id="image_seal_container">
-                <img id="image_seal" src="assets/images/SealCircle.png"/>
+                <img id="image_seal" src="assets/images/icon.png"/>
                 <div id="updateAvailableTooltip"><%- lang('landing.updateAvailableTooltip') %></div>
             </div>
         </div>
@@ -27,6 +27,16 @@
                             </button>
                         </div>
                     </div>
+                    <div id="internalMedia">
+                        <div class="mediaContainer" id="screenshotsMediaContainer">
+                            <button class="mediaButton" id="screenshotsMediaButton">
+                                <svg id="screenshotsSVG" class="mediaSVG" viewBox="0 0 600 533">
+                                    <path d="M160 32c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H160zM396 138.7l96 144c4.9 7.4 5.4 16.8 1.2 24.6S480.9 320 472 320H328 280 200c-9.2 0-17.6-5.3-21.6-13.6s-2.9-18.2 2.9-25.4l64-80c4.6-5.7 11.4-9 18.7-9s14.2 3.3 18.7 9l17.3 21.6 56-84C360.5 132 368 128 376 128s15.5 4 20 10.7zM192 128a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM48 120c0-13.3-10.7-24-24-24S0 106.7 0 120V344c0 75.1 60.9 136 136 136H456c13.3 0 24-10.7 24-24s-10.7-24-24-24H136c-48.6 0-88-39.4-88-88V120z" id="svg_3" class=""/>
+                                </svg>
+                                <div id="screenshotsTooltip"><%- lang('landing.screenshotsTooltip') %></div>
+                            </button>
+                        </div>
+                    </div>
                     <div class="mediaDivider"></div>
                     <div id="externalMedia">
                         <div class="mediaContainer">
@@ -40,48 +50,22 @@
                             </a>
                         </div>
                         <div class="mediaContainer">
-                            <a href="<%- lang('landing.mediaTwitterURL') %>" class="mediaURL" id="twitterURL">
-                                <svg id="twitterSVG" class="mediaSVG" viewBox="0 0 5000 4060" preserveAspectRatio="xMidYMid meet">	
+                            <a href="<%- lang('landing.mediaAfreecaTVURL') %>" class="mediaURL" id="afreecaURL">
+                                <svg id="afreecaSVG" class="mediaSVG" viewBox="0 0 69.15 75.91">
                                     <g>
-                                        <path d="M1210 4048 c-350 -30 -780 -175 -1124 -378 -56 -33 -86 -57 -86 -68 0 -16 7 -17 83 -9 114 12 349 1 493 -22 295 -49 620 -180 843 -341 l54 -38 -49 -7 c-367 -49 -660 -256 -821 -582 -30 -61 -53 -120 -51 -130 3 -16 12 -17 73 -13 97 7 199 5 270 -4 l60 -9 -65 -22 c-341 -117 -609 -419 -681 -769 -18 -88 -26 -226 -13 -239 4 -3 32 7 63 22 68 35 198 77 266 86 28 4 58 9 68 12 10 2 -22 -34 -72 -82 -240 -232 -353 -532 -321 -852 15 -149 79 -347 133 -418 16 -20 17 -19 49 20 377 455 913 795 1491 945 160 41 346 74 485 86 l82 7 -7 -59 c-5 -33 -7 -117 -6 -189 2 -163 31 -286 103 -430 141 -285 422 -504 708 -550 112 -19 333 -19 442 0 180 30 335 108 477 239 l58 54 95 -24 c143 -36 286 -89 427 -160 70 -35 131 -60 135 -56 19 19 -74 209 -151 312 -50 66 -161 178 -216 217 l-30 22 73 -14 c111 -21 257 -63 353 -101 99 -39 99 -39 99 -19 0 57 -237 326 -412 468 l-88 71 6 51 c4 28 1 130 -5 226 -30 440 -131 806 -333 1202 -380 745 -1036 1277 -1823 1477 -243 62 -430 81 -786 78 -134 0 -291 -5 -349 -10z"/>
-                                    </g>
-                                </svg>
-                            </a>
-                        </div>
-                        <div class="mediaContainer">
-                            <a href="<%- lang('landing.mediaInstagramURL') %>" class="mediaURL" id="instagramURL">
-                                <svg id="instagramSVG" class="mediaSVG" viewBox="0 0 5040 5040">
-                                    <defs>
-                                        <radialGradient id="instaFill" cx="30%" cy="107%" r="150%">
-                                            <stop offset="0%" stop-color="#fdf497"/>
-                                            <stop offset="5%" stop-color="#fdf497"/>
-                                            <stop offset="45%" stop-color="#fd5949"/>
-                                            <stop offset="60%" stop-color="#d6249f"/>
-                                            <stop offset="90%" stop-color="#285AEB"/>
-                                        </radialGradient>
-                                    </defs>
-                                    <g>
-                                        <path d="M1390 5024 c-163 -9 -239 -19 -315 -38 -281 -70 -477 -177 -660 -361 -184 -184 -292 -380 -361 -660 -43 -171 -53 -456 -53 -1445 0 -989 10 -1274 53 -1445 69 -280 177 -476 361 -660 184 -184 380 -292 660 -361 171 -43 456 -53 1445 -53 989 0 1274 10 1445 53 280 69 476 177 660 361 184 184 292 380 361 660 43 171 53 456 53 1445 0 989 -10 1274 -53 1445 -69 280 -177 476 -361 660 -184 184 -380 292 -660 361 -174 44 -454 53 -1470 52 -599 0 -960 -5 -1105 -14z m2230 -473 c58 -6 141 -18 185 -27 397 -78 638 -318 719 -714 37 -183 41 -309 41 -1290 0 -981 -4 -1107 -41 -1290 -81 -395 -319 -633 -714 -714 -183 -37 -309 -41 -1290 -41 -981 0 -1107 4 -1290 41 -397 81 -636 322 -714 719 -33 166 -38 296 -43 1100 -5 796 3 1203 27 1380 67 489 338 758 830 825 47 7 162 15 255 20 250 12 1907 4 2035 -9z"/>
-                                        <path d="M2355 3819 c-307 -42 -561 -172 -780 -400 -244 -253 -359 -543 -359 -899 0 -361 116 -648 367 -907 262 -269 563 -397 937 -397 374 0 675 128 937 397 251 259 367 546 367 907 0 361 -116 648 -367 907 -197 203 -422 326 -690 378 -101 20 -317 27 -412 14z m400 -509 c275 -88 470 -284 557 -560 20 -65 23 -95 23 -230 0 -135 -3 -165 -23 -230 -88 -278 -284 -474 -562 -562 -65 -20 -95 -23 -230 -23 -135 0 -165 3 -230 23 -278 88 -474 284 -562 562 -20 65 -23 95 -23 230 0 135 3 165 23 230 73 230 219 403 427 507 134 67 212 83 390 79 111 -3 155 -8 210 -26z"/>
-                                        <path d="M3750 1473 c-29 -11 -66 -38 -106 -77 -70 -71 -94 -126 -94 -221 0 -95 24 -150 94 -221 72 -71 126 -94 225 -94 168 0 311 143 311 311 0 99 -23 154 -94 225 -43 42 -76 66 -110 77 -61 21 -166 21 -226 0z"/>
-                                    </g>
-                                </svg>
-                            </a>
-                        </div>
-                        <div class="mediaContainer">
-                            <a href="<%- lang('landing.mediaYouTubeURL') %>" class="mediaURL" id="youtubeURL">
-                                <svg id="youtubeSVG" class="mediaSVG" viewBox="35.34 34.3575 70.68 68.71500">
-                                    <g>
-                                        <path d="M84.8,69.52,65.88,79.76V59.27Zm23.65.59c0-5.14-.79-17.63-3.94-20.57S99,45.86,73.37,45.86s-28,.73-31.14,3.68S38.29,65,38.29,70.11s.79,17.63,3.94,20.57,5.52,3.68,31.14,3.68,28-.74,31.14-3.68,3.94-15.42,3.94-20.57"/>
-                                    </g>
-                                </svg>
-                            </a>
-                        </div>
-                        <div class="mediaContainer">
-                            <a href="<%- lang('landing.mediaDiscordURL') %>" class="mediaURL" id="discordURL">
-                                <svg id="discordSVG" class="mediaSVG" viewBox="35.34 34.3575 70.68 68.71500">
-                                    <g>
-                                        <path d="M81.23,78.48a6.14,6.14,0,1,1,6.14-6.14,6.14,6.14,0,0,1-6.14,6.14M60,78.48a6.14,6.14,0,1,1,6.14-6.14A6.14,6.14,0,0,1,60,78.48M104.41,73c-.92-7.7-8.24-22.9-8.24-22.9A43,43,0,0,0,88,45.59a17.88,17.88,0,0,0-8.38-1.27l-.13,1.06a23.52,23.52,0,0,1,5.8,1.95,87.59,87.59,0,0,1,8.17,4.87s-10.32-5.63-22.27-5.63a51.32,51.32,0,0,0-23.2,5.63,87.84,87.84,0,0,1,8.17-4.87,23.57,23.57,0,0,1,5.8-1.95l-.13-1.06a17.88,17.88,0,0,0-8.38,1.27,42.84,42.84,0,0,0-8.21,4.56S37.87,65.35,37,73s-.37,11.54-.37,11.54,4.22,5.68,9.9,7.14,7.7,1.47,7.7,1.47l3.75-4.68a21.22,21.22,0,0,1-4.65-2A24.47,24.47,0,0,1,47.93,82S61.16,88.4,70.68,88.4c10,0,22.75-6.44,22.75-6.44a24.56,24.56,0,0,1-5.35,4.56,21.22,21.22,0,0,1-4.65,2l3.75,4.68s2,0,7.7-1.47,9.89-7.14,9.89-7.14.55-3.85-.37-11.54"/>
+                                        <clipPath id="a">
+                                            <path d="M2.14,65A108.54,108.54,0,0,1,0,43.19a100.16,100.16,0,0,1,1.33-17.07,20.93,20.93,0,0,1,.71-2.77,11.1,11.1,0,0,1,6.35-6.74A28.88,28.88,0,0,1,13.26,15a83.71,83.71,0,0,1,19.15-2.37h.45A78.06,78.06,0,0,1,51.77,15a49.58,49.58,0,0,1,5.15,1.68s5.07,2,6.42,6.67A24.76,24.76,0,0,1,64,26a114.94,114.94,0,0,1,1.36,17.21,110.06,110.06,0,0,1-2.2,21.93v0a10.05,10.05,0,0,1-7.66,7.75l-.36.07a115.36,115.36,0,0,1-22.46,2.2A115.39,115.39,0,0,1,10.26,73l-.5-.1A10,10,0,0,1,4,69.2,8.83,8.83,0,0,1,2.14,65Z" fill="none"></path>
+                                        </clipPath>
+                                        <path class="blue" d="M50.22,1.27a2.33,2.33,0,0,1-1.36,3.25l-14.11,6.41a4.66,4.66,0,0,1-4.37-.1l-9.12-4.32a2.34,2.34,0,0,1-.61-3.44h0A2.3,2.3,0,0,1,24,2.81l7,5.64a2.47,2.47,0,0,0,2.19.52A3,3,0,0,0,34,8.6L46.91.33a2.35,2.35,0,0,1,3.31.94Z"></path>
+                                        <g clip-path="url(#a)">
+                                            <path class="blue" d="m68.24 27.38c-1-7.4-2.7-11.63-12.33-13.81a105.8 105.8 0 0 0-20.14-2.57c-1.09-0.05-2.19-0.05-3.29 0a105.71 105.71 0 0 0-20.13 2.58c-7.13 1.62-9.92 4.35-11.29 8.67-0.24 0.76 2.06-0.45 1.89 0.41s0.53 12.21 0.4 13.17c-1 7.29-4.24 7.61-4.24 7.87a134.72 134.72 0 0 0 0.89 16.3c1 7.4 2.71 11.62 12.34 13.81 8.68 2 15 1.83 20.13 2.06h3.29c5.16-0.23 11.45-0.1 20.14-2.06 9.63-2.19 11.34-6.41 12.33-13.81a132.48 132.48 0 0 0 0.9-16.31c0-0.14-1.45-3-2.88-6.78-0.14-0.37-1.08 1.57-1.22 1.19-1-2.74-1.09-8.12-1.41-10.85-0.04-0.44 4.68 0.56 4.62 0.13z"></path>
+                                            <path class="sky" d="m43.87 33.56c-0.07-2.56-0.1-5.08 0-7.61a5.56 5.56 0 0 1 2.58-4.79 6.39 6.39 0 0 1 5.83-0.29c3 1.33 6.82 3.37 6.82 3.37 2.21 1.2 4.07 2.21 6.39 3.72a2.5 2.5 0 0 1 0.35 0.21 5.63 5.63 0 0 1 0.07 9.45c-2.2 1.46-4.11 2.85-6.37 4.25a60 60 0 0 1-5.93 3.31 7.37 7.37 0 0 1-6.32 0.32 6.14 6.14 0 0 1-3-4.94s-0.29-2.79-0.42-7z"></path>
+                                            <path d="m47.75 53.93c-7.31 6.8-23.16 6.81-30.27 0a1.44 1.44 0 0 0-2 2.07c8.21 7.84 25.8 7.85 34.21 0a1.43 1.43 0 1 0-1.95-2.1z" fill="#fff"></path>
+                                            <path class="green" d="M41.91,42.6a.2.2,0,0,1,0-.07l0-.43-1-10.77,0-.3a5,5,0,0,0-.13-.69,5.55,5.55,0,0,0-4.43-4.13,5.64,5.64,0,0,0-.93-.08h-5.53a5.29,5.29,0,0,0-.8.06,5.56,5.56,0,0,0-4.56,4.14c0,.18-.08.37-.11.55l-.05.58-1,10.7,0,.25a1.15,1.15,0,0,0,0,.19,1.48,1.48,0,0,0,0,.21,5.56,5.56,0,0,0,4.14,5.37,5.45,5.45,0,0,0,1.41.19h7.51a5.5,5.5,0,0,0,.91-.08,5.57,5.57,0,0,0,4.64-5.48Z"></path>
+                                            <path class="red" d="m21.11 36.67c-2.13 7.11-8.5 10.73-15.54 9.51-7.31-1.26-12.59-11.6-8.95-18 3.12-5.46 9.92-9.5 17-7.32 7.55 2.35 9.64 8.63 7.49 15.81z"></path>
+                                            <circle class="black" cx="54.1" cy="33.27" r="4.69"></circle>
+                                            <circle class="black" cx="10.46" cy="33.27" r="4.69"></circle>
+                                        </g>
                                     </g>
                                 </svg>
                             </a>
@@ -99,47 +83,20 @@
                         <span class="bot_label" id="landingPlayerLabel"><%- lang('landing.serverStatus') %></span>
                         <span id="player_count"><%- lang('landing.serverStatusPlaceholder') %></span>
                     </div>
-                    <div class="bot_divider"></div>
-                    <div id="mojangStatusWrapper">
-                        <span class="bot_label"><%- lang('landing.mojangStatus') %></span>
-                        <span id="mojang_status_icon">&#8226;</span>
-                        <div id="mojangStatusTooltip">
-                            <div id="mojangStatusTooltipTitle"><%- lang('landing.mojangStatusTooltipTitle') %></div>
-                            <div id="mojangStatusEssentialContainer">
-                                <!-- Essential Mojang services are populated here. -->
-                            </div>
-                            <div id="mojangStatusNEContainer">
-                                <div class="mojangStatusNEBar"></div>
-                                <div id="mojangStatusNETitle"><%- lang('landing.mojangStatusNETitle') %></div>
-                                <div class="mojangStatusNEBar"></div>
-                            </div>
-                            <div id="mojangStatusNonEssentialContainer">
-                                <!-- Non Essential Mojang services are populated here. -->
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
         <div id="center">
-            <div class="bot_wrapper">
-                <div id="content">
-                    <button id="newsButton">
-                        <!--<img src="assets/images/icons/arrow.svg" id="newsButtonSVG"/>-->
-                        <div id="newsButtonAlert" style="display: none;"></div>
-                        <svg id="newsButtonSVG" viewBox="0 0 24.87 13.97">
-                            <defs>
-                                <style>.arrowLine{fill:none;stroke:#FFF;stroke-width:2px;}</style>
-                            </defs>
-                            <polyline class="arrowLine" points="0.71 13.26 12.56 1.41 24.16 13.02"/>
-                        </svg>
-                        &#10;<span id="newsButtonText"><%- lang('landing.newsButton') %></span>
-                    </button>
-                </div>
-            </div>
         </div>
         <div id="right">
             <div class="bot_wrapper">
+                <div id="resolutionSettingsContainer">
+                    <label for="resolutionDropdown">해상도 설정: </label>
+                    <select id="resolutionDropdown">
+                        <option value="1280x720">1280x720</option>
+                        <option value="1920x1080">1920x1080</option>
+                    </select>
+                </div>
                 <div id="launch_content">
                     <button id="launch_button"><%- lang('landing.launchButton') %></button>
                     <div class="bot_divider"></div>
