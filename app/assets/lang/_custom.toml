@@ -4,11 +4,12 @@
 title = "물초코"
 
 [ejs.landing]
-mediaGitHubURL = "https://github.com/CustomLauncherLab/moolchoco"
+mediaGitHubURL = "https://bj.afreecatv.com/moolchoco"
 mediaTwitterURL = "#"
 mediaInstagramURL = "#"
 mediaYouTubeURL = "#"
 mediaDiscordURL = "#"
+mediaAfreecaTVURL = "#"
 screenshotsTooltip = "스크린샷"
 
 [ejs.settings]
