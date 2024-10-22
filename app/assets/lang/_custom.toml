@@ -1,7 +1,7 @@
 # Custom Language File for Launcher Customizer
 
 [ejs.app]
-title = "물초코"
+title = "MBTI 단합대회"
 
 [ejs.landing]
 mediaGitHubURL = "https://bj.afreecatv.com/moolchoco"
@@ -17,6 +17,6 @@ sourceGithubLink = "https://github.com/CustomLauncherLab/moolchoco"
 supportLink = "https://github.com/CustomLauncherLab/moolchoco/issues"
 
 [ejs.welcome]
-welcomeHeader = "물초코"
+welcomeHeader = "MBTI 단합대회"
 welcomeDescription = ""
 welcomeDescCTA = ""
