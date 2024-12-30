@@ -325,34 +325,9 @@ function fullSettingsSave() {
     saveSettingsValues()
     saveModConfiguration()
     ConfigManager.save()
-    settingResolutionChange()
-    // saveDropinModConfiguration()
+    saveDropinModConfiguration()
     saveShaderpackSettings()
 }
-
-// 설정창에서 게임 해상도 변경 했을떄
-function settingResolutionChange() {
-    const resolutionDropdown = document.getElementById('resolutionDropdown');
-    const currentResolution = ConfigManager.getGameWidth() + 'x' + ConfigManager.getGameHeight();
-
-    let optionExists = false;
-    for (let i = 0; i < resolutionDropdown.options.length; i++) {
-        if (resolutionDropdown.options[i].value === currentResolution) {
-            optionExists = true;
-            resolutionDropdown.options[i].selected = true;
-            break;
-        }
-    }
-
-    if (!optionExists) {
-        const newOption = document.createElement('option');
-        newOption.value = currentResolution;
-        newOption.text = currentResolution;
-        newOption.selected = true;
-        resolutionDropdown.appendChild(newOption);
-    }
-}
-
 
 /* Closes the settings view and saves all data. */
 settingsNavDone.onclick = () => {
@@ -368,13 +343,13 @@ const msftLoginLogger = LoggerUtil.getLogger('Microsoft Login')
 const msftLogoutLogger = LoggerUtil.getLogger('Microsoft Logout')
 
 // Bind the add mojang account button.
-// document.getElementById('settingsAddMojangAccount').onclick = (e) => {
-//     switchView(getCurrentView(), VIEWS.login, 500, 500, () => {
-//         loginViewOnCancel = VIEWS.settings
-//         loginViewOnSuccess = VIEWS.settings
-//         loginCancelEnabled(true)
-//     })
-// }
+document.getElementById('settingsAddMojangAccount').onclick = (e) => {
+    switchView(getCurrentView(), VIEWS.login, 500, 500, () => {
+        loginViewOnCancel = VIEWS.settings
+        loginViewOnSuccess = VIEWS.settings
+        loginCancelEnabled(true)
+    })
+}
 
 // Bind the add microsoft account button.
 document.getElementById('settingsAddMicrosoftAccount').onclick = (e) => {
@@ -880,35 +855,35 @@ let CACHE_DROPIN_MODS
  * Resolve any located drop-in mods for this server and
  * populate the results onto the UI.
  */
-// async function resolveDropinModsForUI(){
-//     const serv = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
-//     CACHE_SETTINGS_MODS_DIR = path.join(ConfigManager.getInstanceDirectory(), serv.rawServer.id, 'mods')
-//     CACHE_DROPIN_MODS = DropinModUtil.scanForDropinMods(CACHE_SETTINGS_MODS_DIR, serv.rawServer.minecraftVersion)
+async function resolveDropinModsForUI(){
+    const serv = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
+    CACHE_SETTINGS_MODS_DIR = path.join(ConfigManager.getInstanceDirectory(), serv.rawServer.id, 'mods')
+    CACHE_DROPIN_MODS = DropinModUtil.scanForDropinMods(CACHE_SETTINGS_MODS_DIR, serv.rawServer.minecraftVersion)
 
-//     let dropinMods = ''
+    let dropinMods = ''
 
-//     for(dropin of CACHE_DROPIN_MODS){
-//         dropinMods += `<div id="${dropin.fullName}" class="settingsBaseMod settingsDropinMod" ${!dropin.disabled ? 'enabled' : ''}>
-//                     <div class="settingsModContent">
-//                         <div class="settingsModMainWrapper">
-//                             <div class="settingsModStatus"></div>
-//                             <div class="settingsModDetails">
-//                                 <span class="settingsModName">${dropin.name}</span>
-//                                 <div class="settingsDropinRemoveWrapper">
-//                                     <button class="settingsDropinRemoveButton" remmod="${dropin.fullName}">${Lang.queryJS('settings.dropinMods.removeButton')}</button>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                         <label class="toggleSwitch">
-//                             <input type="checkbox" formod="${dropin.fullName}" dropin ${!dropin.disabled ? 'checked' : ''}>
-//                             <span class="toggleSwitchSlider"></span>
-//                         </label>
-//                     </div>
-//                 </div>`
-//     }
+    for(dropin of CACHE_DROPIN_MODS){
+        dropinMods += `<div id="${dropin.fullName}" class="settingsBaseMod settingsDropinMod" ${!dropin.disabled ? 'enabled' : ''}>
+                    <div class="settingsModContent">
+                        <div class="settingsModMainWrapper">
+                            <div class="settingsModStatus"></div>
+                            <div class="settingsModDetails">
+                                <span class="settingsModName">${dropin.name}</span>
+                                <div class="settingsDropinRemoveWrapper">
+                                    <button class="settingsDropinRemoveButton" remmod="${dropin.fullName}">${Lang.queryJS('settings.dropinMods.removeButton')}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="toggleSwitch">
+                            <input type="checkbox" formod="${dropin.fullName}" dropin ${!dropin.disabled ? 'checked' : ''}>
+                            <span class="toggleSwitchSlider"></span>
+                        </label>
+                    </div>
+                </div>`
+    }
 
-//     document.getElementById('settingsDropinModsContent').innerHTML = dropinMods
-// }
+    document.getElementById('settingsDropinModsContent').innerHTML = dropinMods
+}
 
 /**
  * Bind the remove button for each loaded drop-in mod.
@@ -938,77 +913,77 @@ function bindDropinModsRemoveButton(){
  * Bind functionality to the file system button for the selected
  * server configuration.
  */
-// function bindDropinModFileSystemButton(){
-//     const fsBtn = document.getElementById('settingsDropinFileSystemButton')
-//     fsBtn.onclick = () => {
-//         DropinModUtil.validateDir(CACHE_SETTINGS_MODS_DIR)
-//         shell.openPath(CACHE_SETTINGS_MODS_DIR)
-//     }
-//     fsBtn.ondragenter = e => {
-//         e.dataTransfer.dropEffect = 'move'
-//         fsBtn.setAttribute('drag', '')
-//         e.preventDefault()
-//     }
-//     fsBtn.ondragover = e => {
-//         e.preventDefault()
-//     }
-//     fsBtn.ondragleave = e => {
-//         fsBtn.removeAttribute('drag')
-//     }
+function bindDropinModFileSystemButton(){
+    const fsBtn = document.getElementById('settingsDropinFileSystemButton')
+    fsBtn.onclick = () => {
+        DropinModUtil.validateDir(CACHE_SETTINGS_MODS_DIR)
+        shell.openPath(CACHE_SETTINGS_MODS_DIR)
+    }
+    fsBtn.ondragenter = e => {
+        e.dataTransfer.dropEffect = 'move'
+        fsBtn.setAttribute('drag', '')
+        e.preventDefault()
+    }
+    fsBtn.ondragover = e => {
+        e.preventDefault()
+    }
+    fsBtn.ondragleave = e => {
+        fsBtn.removeAttribute('drag')
+    }
 
-//     fsBtn.ondrop = async e => {
-//         fsBtn.removeAttribute('drag')
-//         e.preventDefault()
+    fsBtn.ondrop = async e => {
+        fsBtn.removeAttribute('drag')
+        e.preventDefault()
 
-//         DropinModUtil.addDropinMods(e.dataTransfer.files, CACHE_SETTINGS_MODS_DIR)
-//         await reloadDropinMods()
-//     }
-// }
+        DropinModUtil.addDropinMods(e.dataTransfer.files, CACHE_SETTINGS_MODS_DIR)
+        await reloadDropinMods()
+    }
+}
 
 /**
  * Save drop-in mod states. Enabling and disabling is just a matter
  * of adding/removing the .disabled extension.
  */
-// function saveDropinModConfiguration(){
-//     for(dropin of CACHE_DROPIN_MODS){
-//         const dropinUI = document.getElementById(dropin.fullName)
-//         if(dropinUI != null){
-//             const dropinUIEnabled = dropinUI.hasAttribute('enabled')
-//             if(DropinModUtil.isDropinModEnabled(dropin.fullName) != dropinUIEnabled){
-//                 DropinModUtil.toggleDropinMod(CACHE_SETTINGS_MODS_DIR, dropin.fullName, dropinUIEnabled).catch(err => {
-//                     if(!isOverlayVisible()){
-//                         setOverlayContent(
-//                             Lang.queryJS('settings.dropinMods.failedToggleTitle'),
-//                             err.message,
-//                             Lang.queryJS('settings.dropinMods.okButton')
-//                         )
-//                         setOverlayHandler(null)
-//                         toggleOverlay(true)
-//                     }
-//                 })
-//             }
-//         }
-//     }
-// }
+function saveDropinModConfiguration(){
+    for(dropin of CACHE_DROPIN_MODS){
+        const dropinUI = document.getElementById(dropin.fullName)
+        if(dropinUI != null){
+            const dropinUIEnabled = dropinUI.hasAttribute('enabled')
+            if(DropinModUtil.isDropinModEnabled(dropin.fullName) != dropinUIEnabled){
+                DropinModUtil.toggleDropinMod(CACHE_SETTINGS_MODS_DIR, dropin.fullName, dropinUIEnabled).catch(err => {
+                    if(!isOverlayVisible()){
+                        setOverlayContent(
+                            Lang.queryJS('settings.dropinMods.failedToggleTitle'),
+                            err.message,
+                            Lang.queryJS('settings.dropinMods.okButton')
+                        )
+                        setOverlayHandler(null)
+                        toggleOverlay(true)
+                    }
+                })
+            }
+        }
+    }
+}
 
 // Refresh the drop-in mods when F5 is pressed.
 // Only active on the mods tab.
 document.addEventListener('keydown', async (e) => {
     if(getCurrentView() === VIEWS.settings && selectedSettingsTab === 'settingsTabMods'){
         if(e.key === 'F5'){
-            // await reloadDropinMods()
+            await reloadDropinMods()
             saveShaderpackSettings()
             await resolveShaderpacksForUI()
         }
     }
 })
 
-// async function reloadDropinMods(){
-//     await resolveDropinModsForUI()
-//     bindDropinModsRemoveButton()
-//     bindDropinModFileSystemButton()
-//     bindModsToggleSwitch()
-// }
+async function reloadDropinMods(){
+    await resolveDropinModsForUI()
+    bindDropinModsRemoveButton()
+    bindDropinModFileSystemButton()
+    bindModsToggleSwitch()
+}
 
 // Shaderpack
 
@@ -1156,10 +1131,10 @@ function animateSettingsTabRefresh(){
  */
 async function prepareModsTab(first){
     await resolveModsForUI()
-    // await resolveDropinModsForUI()
+    await resolveDropinModsForUI()
     await resolveShaderpacksForUI()
-    // bindDropinModsRemoveButton()
-    // bindDropinModFileSystemButton()
+    bindDropinModsRemoveButton()
+    bindDropinModFileSystemButton()
     bindShaderpackButton()
     bindModsToggleSwitch()
     await loadSelectedServerOnModsTab()

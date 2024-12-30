@@ -145,7 +145,13 @@
                         
                     </div>
                 </div>
-
+                <div id="settingsDropinModsContainer">
+                    <div class="settingsModsHeader"><%- lang('settings.dropinMods') %></div>
+                    <button id="settingsDropinFileSystemButton"><%- lang('settings.addMods') %> <span id="settingsDropinRefreshNote"><%- lang('settings.dropinRefreshNote') %></span></button>
+                    <div id="settingsDropinModsContent">
+                        
+                    </div>
+                </div>
                 <div id="settingsShadersContainer">
                     <div class="settingsModsHeader"><%- lang('settings.shaderpacks') %></div>
                     <div id="settingsShaderpackDesc"><%- lang('settings.shaderpackDesc') %></div>
@@ -308,7 +314,7 @@
             <div id="settingsAboutCurrentContainer">
                 <div id="settingsAboutCurrentContent">
                     <div id="settingsAboutCurrentHeadline">
-                        <img id="settingsAboutLogo" src="./assets/images/icon.png">
+                        <img id="settingsAboutLogo" src="./assets/images/icon.png" />
                         <span id="settingsAboutTitle"><%- lang('settings.aboutTitle', { appName: lang('app.title') }) %></span>
                     </div>
                     <div id="settingsAboutCurrentVersion">

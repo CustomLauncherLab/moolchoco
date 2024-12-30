@@ -139,36 +139,6 @@ document.getElementById('screenshotsMediaButton').onclick = async e => {
     shell.openPath(screenshotDir);
 };
 
-// 게임 해상도 변경
-document.addEventListener('DOMContentLoaded', () => {
-    const resolutionDropdown = document.getElementById('resolutionDropdown');
-    const currentResolution = ConfigManager.getGameWidth() + 'x' + ConfigManager.getGameHeight();
-
-    let optionExists = false;
-    for (let i = 0; i < resolutionDropdown.options.length; i++) {
-        if (resolutionDropdown.options[i].value === currentResolution) {
-            optionExists = true;
-            resolutionDropdown.options[i].selected = true;
-            break;
-        }
-    }
-
-    if (!optionExists) {
-        const newOption = document.createElement('option');
-        newOption.value = currentResolution;
-        newOption.text = currentResolution;
-        newOption.selected = true;
-        resolutionDropdown.appendChild(newOption);
-    }
-    
-    resolutionDropdown.addEventListener('change', function() {
-        const [width, height] = this.value.split('x');
-        ConfigManager.setGameWidth(width);
-        ConfigManager.setGameHeight(height);
-        ConfigManager.save();
-    });
-});
-
 // Bind settings button
 document.getElementById('settingsMediaButton').onclick = async e => {
     await prepareSettings()
@@ -272,9 +242,9 @@ const refreshMojangStatuses = async function(){
         }
     }
     
-    // document.getElementById('mojangStatusEssentialContainer').innerHTML = tooltipEssentialHTML
-    // document.getElementById('mojangStatusNonEssentialContainer').innerHTML = tooltipNonEssentialHTML
-    // document.getElementById('mojang_status_icon').style.color = MojangRestAPI.statusToHex(status)
+    document.getElementById('mojangStatusEssentialContainer').innerHTML = tooltipEssentialHTML
+    document.getElementById('mojangStatusNonEssentialContainer').innerHTML = tooltipNonEssentialHTML
+    document.getElementById('mojang_status_icon').style.color = MojangRestAPI.statusToHex(status)
 }
 
 const refreshServerStatus = async (fade = false) => {
@@ -746,24 +716,24 @@ function slide_(up){
 }
 
 // Bind news button.
-// document.getElementById('newsButton').onclick = () => {
-//     // Toggle tabbing.
-//     if(newsActive){
-//         $('#landingContainer *').removeAttr('tabindex')
-//         $('#newsContainer *').attr('tabindex', '-1')
-//     } else {
-//         $('#landingContainer *').attr('tabindex', '-1')
-//         $('#newsContainer, #newsContainer *, #lower, #lower #center *').removeAttr('tabindex')
-//         if(newsAlertShown){
-//             $('#newsButtonAlert').fadeOut(2000)
-//             newsAlertShown = false
-//             ConfigManager.setNewsCacheDismissed(true)
-//             ConfigManager.save()
-//         }
-//     }
-//     slide_(!newsActive)
-//     newsActive = !newsActive
-// }
+document.getElementById('newsButton').onclick = () => {
+    // Toggle tabbing.
+    if(newsActive){
+        $('#landingContainer *').removeAttr('tabindex')
+        $('#newsContainer *').attr('tabindex', '-1')
+    } else {
+        $('#landingContainer *').attr('tabindex', '-1')
+        $('#newsContainer, #newsContainer *, #lower, #lower #center *').removeAttr('tabindex')
+        if(newsAlertShown){
+            $('#newsButtonAlert').fadeOut(2000)
+            newsAlertShown = false
+            ConfigManager.setNewsCacheDismissed(true)
+            ConfigManager.save()
+        }
+    }
+    slide_(!newsActive)
+    newsActive = !newsActive
+}
 
 // Array to store article meta.
 let newsArr = null
@@ -776,34 +746,34 @@ let newsLoadingListener = null
  * 
  * @param {boolean} val True to set loading animation, otherwise false.
  */
-// function setNewsLoading(val){
-//     if(val){
-//         const nLStr = Lang.queryJS('landing.news.checking')
-//         let dotStr = '..'
-//         nELoadSpan.innerHTML = nLStr + dotStr
-//         newsLoadingListener = setInterval(() => {
-//             if(dotStr.length >= 3){
-//                 dotStr = ''
-//             } else {
-//                 dotStr += '.'
-//             }
-//             nELoadSpan.innerHTML = nLStr + dotStr
-//         }, 750)
-//     } else {
-//         if(newsLoadingListener != null){
-//             clearInterval(newsLoadingListener)
-//             newsLoadingListener = null
-//         }
-//     }
-// }
+function setNewsLoading(val){
+    if(val){
+        const nLStr = Lang.queryJS('landing.news.checking')
+        let dotStr = '..'
+        nELoadSpan.innerHTML = nLStr + dotStr
+        newsLoadingListener = setInterval(() => {
+            if(dotStr.length >= 3){
+                dotStr = ''
+            } else {
+                dotStr += '.'
+            }
+            nELoadSpan.innerHTML = nLStr + dotStr
+        }, 750)
+    } else {
+        if(newsLoadingListener != null){
+            clearInterval(newsLoadingListener)
+            newsLoadingListener = null
+        }
+    }
+}
 
 // Bind retry button.
-// newsErrorRetry.onclick = () => {
-//     $('#newsErrorFailed').fadeOut(250, () => {
-//         initNews()
-//         $('#newsErrorLoading').fadeIn(250)
-//     })
-// }
+newsErrorRetry.onclick = () => {
+    $('#newsErrorFailed').fadeOut(250, () => {
+        initNews()
+        $('#newsErrorLoading').fadeIn(250)
+    })
+}
 
 newsArticleContentScrollable.onscroll = (e) => {
     if(e.target.scrollTop > Number.parseFloat($('.newsArticleSpacerTop').css('height'))){
@@ -819,16 +789,16 @@ newsArticleContentScrollable.onscroll = (e) => {
  * @returns {Promise.<void>} A promise which resolves when the news
  * content has finished loading and transitioning.
  */
-// function reloadNews(){
-//     return new Promise((resolve, reject) => {
-//         $('#newsContent').fadeOut(250, () => {
-//             $('#newsErrorLoading').fadeIn(250)
-//             initNews().then(() => {
-//                 resolve()
-//             })
-//         })
-//     })
-// }
+function reloadNews(){
+    return new Promise((resolve, reject) => {
+        $('#newsContent').fadeOut(250, () => {
+            $('#newsErrorLoading').fadeIn(250)
+            initNews().then(() => {
+                resolve()
+            })
+        })
+    })
+}
 
 let newsAlertShown = false
 
@@ -942,6 +912,8 @@ async function initNews(){
         displayArticle(newsArr[0], 1)
         await $('#newsContent').fadeIn(250).promise()
     }
+
+
 }
 
 /**
@@ -949,24 +921,24 @@ async function initNews(){
  * between articles. If you are on the landing page, the up arrow will
  * open the news UI.
  */
-// document.addEventListener('keydown', (e) => {
-//     if(newsActive){
-//         if(e.key === 'ArrowRight' || e.key === 'ArrowLeft'){
-//             document.getElementById(e.key === 'ArrowRight' ? 'newsNavigateRight' : 'newsNavigateLeft').click()
-//         }
-//         // Interferes with scrolling an article using the down arrow.
-//         // Not sure of a straight forward solution at this point.
-//         // if(e.key === 'ArrowDown'){
-//         //     document.getElementById('newsButton').click()
-//         // }
-//     } else {
-//         if(getCurrentView() === VIEWS.landing){
-//             if(e.key === 'ArrowUp'){
-//                 document.getElementById('newsButton').click()
-//             }
-//         }
-//     }
-// })
+document.addEventListener('keydown', (e) => {
+    if(newsActive){
+        if(e.key === 'ArrowRight' || e.key === 'ArrowLeft'){
+            document.getElementById(e.key === 'ArrowRight' ? 'newsNavigateRight' : 'newsNavigateLeft').click()
+        }
+        // Interferes with scrolling an article using the down arrow.
+        // Not sure of a straight forward solution at this point.
+        // if(e.key === 'ArrowDown'){
+        //     document.getElementById('newsButton').click()
+        // }
+    } else {
+        if(getCurrentView() === VIEWS.landing){
+            if(e.key === 'ArrowUp'){
+                document.getElementById('newsButton').click()
+            }
+        }
+    }
+})
 
 /**
  * Display a news article on the UI.
@@ -974,23 +946,23 @@ async function initNews(){
  * @param {Object} articleObject The article meta object.
  * @param {number} index The article index.
  */
-// function displayArticle(articleObject, index){
-//     newsArticleTitle.innerHTML = articleObject.title
-//     newsArticleTitle.href = articleObject.link
-//     newsArticleAuthor.innerHTML = 'by ' + articleObject.author
-//     newsArticleDate.innerHTML = articleObject.date
-//     newsArticleComments.innerHTML = articleObject.comments
-//     newsArticleComments.href = articleObject.commentsLink
-//     newsArticleContentScrollable.innerHTML = '<div id="newsArticleContentWrapper"><div class="newsArticleSpacerTop"></div>' + articleObject.content + '<div class="newsArticleSpacerBot"></div></div>'
-//     Array.from(newsArticleContentScrollable.getElementsByClassName('bbCodeSpoilerButton')).forEach(v => {
-//         v.onclick = () => {
-//             const text = v.parentElement.getElementsByClassName('bbCodeSpoilerText')[0]
-//             text.style.display = text.style.display === 'block' ? 'none' : 'block'
-//         }
-//     })
-//     newsNavigationStatus.innerHTML = Lang.query('ejs.landing.newsNavigationStatus', {currentPage: index, totalPages: newsArr.length})
-//     newsContent.setAttribute('article', index-1)
-// }
+function displayArticle(articleObject, index){
+    newsArticleTitle.innerHTML = articleObject.title
+    newsArticleTitle.href = articleObject.link
+    newsArticleAuthor.innerHTML = 'by ' + articleObject.author
+    newsArticleDate.innerHTML = articleObject.date
+    newsArticleComments.innerHTML = articleObject.comments
+    newsArticleComments.href = articleObject.commentsLink
+    newsArticleContentScrollable.innerHTML = '<div id="newsArticleContentWrapper"><div class="newsArticleSpacerTop"></div>' + articleObject.content + '<div class="newsArticleSpacerBot"></div></div>'
+    Array.from(newsArticleContentScrollable.getElementsByClassName('bbCodeSpoilerButton')).forEach(v => {
+        v.onclick = () => {
+            const text = v.parentElement.getElementsByClassName('bbCodeSpoilerText')[0]
+            text.style.display = text.style.display === 'block' ? 'none' : 'block'
+        }
+    })
+    newsNavigationStatus.innerHTML = Lang.query('ejs.landing.newsNavigationStatus', {currentPage: index, totalPages: newsArr.length})
+    newsContent.setAttribute('article', index-1)
+}
 
 /**
  * Load news information from the RSS feed specified in the
