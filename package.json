@@ -1,9 +1,9 @@
 {
   "name": "moolchoco",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "productName": "moolchoco",
   "description": "Modded Minecraft Launcher",
-  "author": "gotiger (https://github.com/go-tiger/)",
+  "author": "gotiger (https://github.com/CustomLauncherLab/)",
   "license": "UNLICENSED",
   "homepage": "https://github.com/CustomLauncherLab/moolchoco",
   "bugs": {
