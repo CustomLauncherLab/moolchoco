@@ -1,5 +1,5 @@
 appId: 'moolchoco'
-productName: '물초코'
+productName: '가습기의 노래교실'
 artifactName: 'moolchoco-setup-${version}.${ext}'
 
 copyright: 'Copyright © 2024 gotiger'
